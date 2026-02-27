@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snir Doani - CV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+
+        .page {
+            background: white;
+            width: 21cm;
+            min-height: 29.7cm;
+            margin: 20px auto;
+            padding: 40px 50px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+        }
+
+        /* Header Section */
+        header {
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            text-transform: uppercase;
+            font-size: 36px;
+            color: #2c3e50;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        .title {
+            font-size: 18px;
+            color: #7f8c8d;
+            margin-top: 5px;
+            font-weight: 400;
+        }
+
+        .contact-info {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 80%;
+        }
+
+        /* Section Styling */
+        h2 {
+            font-size: 18px;
+            color: #2980b9;
+            text-transform: uppercase;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .section-content {
+            margin-bottom: 20px;
+        }
+
+        /* Experience & Projects */
+        .job-block {
+            margin-bottom: 20px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+
+        .company-name {
+            font-weight: 700;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+
+        .job-title {
+            font-style: italic;
+            color: #555;
+        }
+
+        .date {
+            font-size: 14px;
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+
+        ul {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Changed to 1 column for better readability of lists */
+            gap: 10px;
+            font-size: 14px;
+        }
+        
+        .skill-row {
+            display: flex;
+            margin-bottom: 5px;
+        }
+
+        .skill-category {
+            font-weight: bold;
+            color: #34495e;
+            min-width: 140px; /* Fixed width for alignment */
+        }
+
+        /* Print Settings */
+        @media print {
+            body { background: none; }
+            .page { margin: 0; box-shadow: none; width: 100%; padding: 0; }
+            @page { margin: 1.5cm; size: A4; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <header>
+            <h1>Snir Doani</h1>
+            <div class="title">Frontend / Full Stack Developer & AI Specialist</div>
+            <div class="contact-info">
+                <span>📍 Ramat Yishai, Israel</span>
+                <span>📞 050-8283860</span>
+                <span>✉️ Snirdoani@gmail.com</span>
+                </div>
+        </header>
+
+        <section>
+            <h2>Professional Summary</h2>
+            <div class="section-content">
+                <p style="font-size: 14px;">
+                    Motivated Practical Software Engineer with over a decade of technical experience. <strong>Specializing in Artificial Intelligence integration and Web Development</strong>. Experienced in building interactive applications using JavaScript, React, and Node.js, while leveraging cutting-edge <strong>AI tools and APIs</strong> (including Claude, OpenAI) to enhance user experience and productivity. Proven ability to solve complex problems and adapt quickly to new technologies.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Technical Skills</h2>
+            <div class="skills-grid section-content">
+                <div class="skill-row">
+                    <span class="skill-category">AI & GenAI:</span>
+                    <span>LLM Integration (OpenAI API, Anthropic), Claude Code, Prompt Engineering, AI Workflows.</span>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-category">Languages:</span>
+                    <span>JavaScript (ES6+), HTML5, CSS3, Java, C#, Python.</span>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-category">Frameworks:</span>
+                    <span>React.js, Node.js, Express.</span>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-category">Tools & Cloud:</span>
+                    <span>Git, Firebase, NPM, Linux, REST APIs.</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Professional Experience</h2>
+            
+            <div class="job-block">
+                <div class="job-header">
+                    <span class="company-name">Technoda - Science & Technology</span>
+                    <span class="date">2012 – Present</span>
+                </div>
+                <div class="job-title">Frontend Developer & Instructor</div>
+                <ul>
+                    <li>Developed dynamic web applications to enhance experiential learning for visitors, utilizing HTML, CSS, and JavaScript.</li>
+                    <li>Designed and implemented <strong>RESTful APIs</strong> to support web functionality and data integration.</li>
+                    <li>Led technical instruction courses for gifted students, focusing on C and Java programming.</li>
+                    <li>Maintained and troubleshot software environments, ensuring high availability for educational tools.</li>
+                </ul>
+            </div>
+
+            <div class="job-block">
+                <div class="job-header">
+                    <span class="company-name">BUG Multisystem</span>
+                    <span class="date">2011 – 2016</span>
+                </div>
+                <div class="job-title">Technical Support & Hardware Specialist</div>
+                <ul>
+                    <li>Provided comprehensive technical support, including hardware assembly and software installation.</li>
+                    <li>Diagnosed and resolved complex hardware and operating system issues for customers.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Key Projects</h2>
+            <div class="job-block">
+                <div class="job-header">
+                    <span class="company-name">EscapePark – Interactive Escape Room App</span>
+                </div>
+                <ul>
+                    <li>Designed and developed a full-stack application for managing an experiential escape room.</li>
+                    <li>Implemented real-time data synchronization using <strong>Firebase</strong> as the backend database.</li>
+                    <li>Created a dynamic user interface to manage game flow and user progress.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Education</h2>
+            <div class="job-block">
+                <div class="job-header">
+                    <span class="company-name">Practical Software Engineer (P.E.)</span>
+                    <span class="date">2016 – 2018</span>
+                </div>
+                <div class="job-title">Mahat (Government Institute for Technological Training)</div>
+                <ul>
+                    <li>Advanced Courses (2018): Full Stack development including Node.js, Firebase, React, and Cloud technologies.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+             <h2>Languages</h2>
+             <div class="section-content" style="font-size: 14px;">
+                 Hebrew (Native) • English (Fluent)
+             </div>
+        </section>
+
+    </div>
+</body>
+</html>

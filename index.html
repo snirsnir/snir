@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snir Doani - Full Stack Developer & AI Specialist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Heebo:wght@300;400;500;700;900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Noto+Sans+Hebrew:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rubik:wght@400;500;700;900&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-mode">
+    <!-- Intro Animation Screen -->
+    <div id="intro-screen" class="intro-screen active">
+        <div class="intro-content">
+            <!-- Loading Spinner -->
+            <div id="intro-loader" class="intro-loader active">
+                <div class="spinner"></div>
+                <p class="loading-text" data-i18n="loading_text">Loading...</p>
+            </div>
+
+            <!-- Hello Text -->
+            <div id="intro-hello" class="intro-step">
+                <h1 class="intro-big-text" data-i18n="intro_hello">HELLO!</h1>
+            </div>
+
+            <!-- Name Text -->
+            <div id="intro-name" class="intro-step">
+                <h2 class="intro-medium-text" data-i18n-html="intro_name">my name is <span class="name-highlight">snir</span></h2>
+            </div>
+
+            <!-- Waving Hand -->
+            <div id="intro-wave" class="intro-step">
+                <div class="waving-hand">👋</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Portfolio Website -->
+    <div id="main-content" class="main-content hidden">
+        <!-- Theme Picker -->
+        <section class="welcome-section">
+            <div class="theme-picker">
+                <span class="theme-picker-label" data-i18n="choose_theme">בחרו ערכת נושא</span>
+                <div class="theme-dots">
+                    <button class="theme-dot active" data-theme="blue"   title="כחול"  style="background: linear-gradient(135deg,#00d4ff,#3B82F6)"></button>
+                    <button class="theme-dot"        data-theme="purple" title="סגול"  style="background: linear-gradient(135deg,#a78bfa,#7C3AED)"></button>
+                    <button class="theme-dot"        data-theme="green"  title="ירוק"  style="background: linear-gradient(135deg,#34d399,#059669)"></button>
+                    <button class="theme-dot"        data-theme="orange" title="כתום"  style="background: linear-gradient(135deg,#fbbf24,#f97316)"></button>
+                    <button class="theme-dot"        data-theme="rose"   title="ורוד"  style="background: linear-gradient(135deg,#fb7185,#e11d48)"></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <div class="logo-circle">S</div>
+                    <span class="logo-text" data-i18n="logo_name">Snir Doani</span>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active"><span data-i18n="nav_home">Home</span></a>
+                    </li>
+                    <li class="nav-item locked" data-section="about">
+                        <a href="#about" class="nav-link">
+                            <span data-i18n="nav_about">אודות</span>
+                            <span class="lock-icon">🔒</span>
+                        </a>
+                    </li>
+                    <li class="nav-item locked" data-section="projects">
+                        <a href="#projects" class="nav-link">
+                            <span data-i18n="nav_projects">תיק עבודות</span>
+                            <span class="lock-icon">🔒</span>
+                        </a>
+                    </li>
+                    <li class="nav-item locked" data-section="portfolio">
+                        <a href="#portfolio" class="nav-link">
+                            <span data-i18n="nav_portfolio">קורות חיים</span>
+                            <span class="lock-icon">🔒</span>
+                        </a>
+                    </li>
+                    <li class="nav-item locked" data-section="blog">
+                        <a href="#blog" class="nav-link">
+                            <span data-i18n="nav_blog">המלצות</span>
+                            <span class="lock-icon">🔒</span>
+                        </a>
+                    </li>
+                    <li class="nav-item locked" data-section="contact">
+                        <a href="#contact" class="nav-link contact-btn">
+                            <span data-i18n="nav_contact">Contact</span>
+                            <span class="lock-icon">🔒</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- Controls: Language + Toggle -->
+                <div class="nav-controls">
+                    <div class="language-switcher">
+                        <span class="lang-label" data-i18n="choose_language">Choose Language</span>
+                        <button class="lang-btn active" id="lang-en" title="English">🇺🇸</button>
+                        <button class="lang-btn" id="lang-he" title="עברית">🇮🇱</button>
+                    </div>
+                    <button id="dark-mode-toggle" class="dark-mode-toggle-fixed" aria-label="Toggle dark mode">
+                        <span class="toggle-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- WhatsApp Floating Button -->
+        <a href="https://wa.me/972508283860" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/960px-WhatsApp.svg.png" alt="WhatsApp">
+        </a>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <div class="badge" data-i18n="badge_text">Nice to meet you</div>
+                        <h1 class="hero-title" data-i18n-html="hero_title">
+                            Hi, I'm<br><span class="name-gradient">Snir Doani</span>
+                        </h1>
+                        <p class="hero-description" data-i18n-html="hero_desc">
+                            Looking for a <strong>tech solution</strong> tailored exactly to your business?<br>
+                            Need a <strong>time tracking system</strong>, <strong>management dashboard</strong>, or a <strong>smart landing page</strong>?<br>
+                            I build custom WEB systems & applications — solutions that save <span class="shine-word">time</span><span class="shine-word">,</span> <span class="shine-word">money</span> <span class="shine-word">and</span> <span class="shine-word">resources</span>.<br>
+                            Reach out today — and we'll find the perfect tech tool for you.
+                        </p>
+                        <button class="cta-button" data-i18n="cta_button">Let's Talk Today →</button>
+
+                        <div class="unlock-message">
+                            <p data-i18n-html="unlock_msg"><strong>Wanna know about me? Win the challenges!</strong></p>
+                            <p class="unlock-hint" data-i18n="unlock_hint">Click on the locked menu items above to start the games</p>
+                        </div>
+                    </div>
+
+                    <div class="hero-image">
+                        <img src="snir.png" alt="Snir Doani" class="profile-image">
+                    </div>
+                </div>
+
+                <!-- Stats Section -->
+                <div class="stats-section">
+                    <div class="stat-item">
+                        <div class="stat-number">7</div>
+                        <div class="stat-label" data-i18n="stat_years">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label" data-i18n="stat_projects">Projects for Clients</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">A+</div>
+                        <div class="stat-label" data-i18n="stat_service">Service & Professionalism</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section (Locked) -->
+        <section id="about" class="content-section locked-section">
+            <div class="container">
+                <div class="locked-overlay">
+                    <div class="lock-message" id="lock-msg-about">
+                        <span class="lock-icon-large">🔒</span>
+                        <h2 data-i18n="locked_title">קטע זה נעול</h2>
+                        <p data-i18n="locked_hint">נצחו את האתגר כדי לפתוח</p>
+                        <button class="challenge-btn" onclick="startChallenge('about')" data-i18n="start_challenge">לחצו כאן כדי לפתוח את האתגר</button>
+                    </div>
+                    <div class="inline-game-container" id="game-about"></div>
+                </div>
+                <div class="section-content">
+
+                    <!-- Hero row -->
+                    <div class="about-hero">
+                        <div class="about-avatar-wrap">
+                            <span class="about-avatar-emoji">🧑‍💻</span>
+                        </div>
+                        <div class="about-identity">
+                            <h2 class="about-name">שניר דואני</h2>
+                            <div class="about-tags">
+                                <span class="about-tag">📍 רמת ישי</span>
+                                <span class="about-tag">💻 Full Stack Developer</span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick stats -->
+                    <div class="about-stats">
+                        <div class="about-stat">
+                            <span class="about-stat-num">#1</span>
+                            <span class="about-stat-label">בשירות</span>
+                        </div>
+                        <div class="about-stat">
+                            <span class="about-stat-num">24/7</span>
+                            <span class="about-stat-label">זמינות</span>
+                        </div>
+                        <div class="about-stat">
+                            <span class="about-stat-num">∞</span>
+                            <span class="about-stat-label">תשוקה</span>
+                        </div>
+                    </div>
+
+                    <!-- Bio -->
+                    <div class="about-bio">
+                        <p>עם רקע טכנולוגי עשיר שמתחיל הרבה לפני הלימודים הפורמליים, אני משלב <strong>הבנה טכנית עמוקה</strong> עם <strong>ראייה עסקית רחבה</strong>.<br>הגישה שלי לפיתוח מתחילה קודם כל בהקשבה לצרכים שלכם, כדי לבנות פתרונות תוכנה <strong>אינטואיטיביים, חזקים ומותאמים אישית</strong>.</p>
+                    </div>
+
+                    <!-- Services -->
+                    <p class="about-services-label">השירותים שאני מציע</p>
+                    <div class="about-services">
+                        <div class="about-service-card">
+                            <span class="about-service-icon">⚙️</span>
+                            <div>
+                                <h4>Full Stack</h4>
+                                <p>בניית פתרונות דיגיטליים מקצה לקצה — Front-end ו-Back-end</p>
+                            </div>
+                        </div>
+                        <div class="about-service-card">
+                            <span class="about-service-icon">📊</span>
+                            <div>
+                                <h4>מערכות ניהול חכמות</h4>
+                                <p>דשבורדים ומערכות דיווח שעות בהתאמה אישית לצרכי העסק</p>
+                            </div>
+                        </div>
+                        <div class="about-service-card">
+                            <span class="about-service-icon">⚡</span>
+                            <div>
+                                <h4>אוטומציה והתייעלות</h4>
+                                <p>הפיכת תהליכים ידניים לאוטומטיים לשיפור הפרודוקטיביות</p>
+                            </div>
+                        </div>
+                        <div class="about-service-card">
+                            <span class="about-service-icon">🎯</span>
+                            <div>
+                                <h4>דפי נחיתה ואתרים</h4>
+                                <p>עיצוב ופיתוח ממוקד המרה ותוצאות</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Featured card -->
+                    <div class="about-featured-card">
+                        <span class="about-featured-star">✦</span>
+                        <span>פרויקטים <strong>מותאמים אישית</strong> לצרכים שלכם!</span>
+                        <span class="about-featured-star">✦</span>
+                    </div>
+
+                    <!-- Availability -->
+                    <div class="about-availability">
+                        <span class="about-avail-dot"></span>
+                        <span>זמין לפרויקטים כ<strong>פרילאנסר</strong> — ופתוח גם להצעות למשרות מעניינות</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section (Locked) -->
+        <section id="projects" class="content-section locked-section">
+            <div class="container">
+                <div class="locked-overlay">
+                    <div class="lock-message" id="lock-msg-projects">
+                        <span class="lock-icon-large">🔒</span>
+                        <h2 data-i18n="locked_title">קטע זה נעול</h2>
+                        <p data-i18n="locked_hint">נצחו את האתגר כדי לפתוח</p>
+                        <button class="challenge-btn" onclick="startChallenge('projects')" data-i18n="start_challenge">לחצו כאן כדי לפתוח את האתגר</button>
+                    </div>
+                    <div class="inline-game-container" id="game-projects"></div>
+                </div>
+                <div class="section-content">
+                    <h2 data-i18n="projects_title">תיק עבודות</h2>
+                    <p class="projects-subtitle">הקליקו על פרויקט לפרטים נוספים</p>
+                    <div class="projects-grid" id="projects-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section (Locked) -->
+        <section id="portfolio" class="content-section locked-section">
+            <div class="container">
+                <div class="locked-overlay">
+                    <div class="lock-message" id="lock-msg-portfolio">
+                        <span class="lock-icon-large">🔒</span>
+                        <h2 data-i18n="locked_title">קטע זה נעול</h2>
+                        <p data-i18n="locked_hint">נצחו את האתגר כדי לפתוח</p>
+                        <button class="challenge-btn" onclick="startChallenge('portfolio')" data-i18n="start_challenge">לחצו כאן כדי לפתוח את האתגר</button>
+                    </div>
+                    <div class="inline-game-container" id="game-portfolio"></div>
+                </div>
+                <div class="section-content">
+                    <h2 data-i18n="portfolio_title">קורות חיים</h2>
+                    <p data-i18n="portfolio_desc">קורות החיים והניסיון המקצועי שלי</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section (Locked) -->
+        <section id="blog" class="content-section locked-section">
+            <div class="container">
+                <div class="locked-overlay">
+                    <div class="lock-message" id="lock-msg-blog">
+                        <span class="lock-icon-large">🔒</span>
+                        <h2 data-i18n="locked_title">קטע זה נעול</h2>
+                        <p data-i18n="locked_hint">נצחו את האתגר כדי לפתוח</p>
+                        <button class="challenge-btn" onclick="startChallenge('blog')" data-i18n="start_challenge">לחצו כאן כדי לפתוח את האתגר</button>
+                    </div>
+                    <div class="inline-game-container" id="game-blog"></div>
+                </div>
+                <div class="section-content">
+                    <h2 data-i18n="blog_title">המלצות</h2>
+                    <p data-i18n="blog_desc">מה אנשים אומרים עליי</p>
+                    <div class="testimonials-grid">
+                        <div class="testimonial-card">
+                            <div class="testimonial-quote">❝</div>
+                            <p class="testimonial-text">שניר הוא מפתח יוצא דופן עם יכולת גבוהה לפתור בעיות מורכבות. הוא עובד מהר, מדויק ותמיד מוסיף ערך לכל צוות שבו הוא משתתף.</p>
+                            <div class="testimonial-author">
+                                <strong>ישראל ישראלי</strong>
+                                <span>מנהל פרויקטים, חברת הייטק</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-quote">❝</div>
+                            <p class="testimonial-text">עבדתי עם שניר על מספר פרויקטים ותמיד הופתעתי מיכולתו לחשוב מחוץ לקופסה. הקוד שלו נקי, מסודר ותמיד תוך עמידה בלוח זמנים.</p>
+                            <div class="testimonial-author">
+                                <strong>רחל כהן</strong>
+                                <span>מנהלת מוצר, סטארטאפ</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-quote">❝</div>
+                            <p class="testimonial-text">שניר הוא אחד האנשים הכי מוכשרים שעבדתי איתם. הוא לומד מהר, מתאים את עצמו לכל טכנולוגיה ותמיד מוכן לעזור לשאר הצוות.</p>
+                            <div class="testimonial-author">
+                                <strong>דוד לוי</strong>
+                                <span>Lead Developer, חברת פינטק</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section (Locked) -->
+        <section id="contact" class="content-section locked-section">
+            <div class="container">
+                <div class="locked-overlay">
+                    <div class="lock-message" id="lock-msg-contact">
+                        <span class="lock-icon-large">🔒</span>
+                        <h2 data-i18n="locked_title">קטע זה נעול</h2>
+                        <p data-i18n="locked_hint">נצחו את האתגר כדי לפתוח</p>
+                        <button class="challenge-btn" onclick="startChallenge('contact')" data-i18n="start_challenge">לחצו כאן כדי לפתוח את האתגר</button>
+                    </div>
+                    <div class="inline-game-container" id="game-contact"></div>
+                </div>
+                <div class="section-content">
+                    <h2 data-i18n="contact_title">Contact</h2>
+                    <p data-i18n="contact_desc">Get in touch with me...</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Game Modal -->
+    <div id="game-modal" class="game-modal">
+        <div class="game-modal-content">
+            <button class="close-modal">&times;</button>
+            <h2 id="game-title">Wanna know about me?</h2>
+            <p id="game-subtitle" data-i18n="game_subtitle">Win the game!</p>
+
+            <!-- Game Container - Different games will be loaded here -->
+            <div id="game-container" class="game-container">
+                <!-- Games will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div class="proj-modal-overlay" id="proj-modal-overlay">
+        <div class="proj-modal" role="dialog">
+            <button class="proj-modal-close" id="proj-modal-close" aria-label="סגור">✕</button>
+            <div class="proj-modal-img-wrap">
+                <img src="" alt="" id="proj-modal-img" class="proj-modal-img">
+                <span class="proj-modal-cat-badge" id="proj-modal-cat"></span>
+                <button class="proj-gallery-btn proj-gallery-prev" id="proj-gallery-prev" aria-label="קודם">‹</button>
+                <button class="proj-gallery-btn proj-gallery-next" id="proj-gallery-next" aria-label="הבא">›</button>
+                <div class="proj-gallery-counter" id="proj-gallery-counter"></div>
+            </div>
+            <div class="proj-modal-body">
+                <h3 class="proj-modal-title" id="proj-modal-title"></h3>
+                <p class="proj-modal-desc" id="proj-modal-desc"></p>
+                <div class="proj-modal-tech" id="proj-modal-tech"></div>
+                <a href="#" target="_blank" rel="noopener" class="proj-modal-link" id="proj-modal-link">⬇ הורד את המשחק</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
