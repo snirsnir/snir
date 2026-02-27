@@ -8,31 +8,70 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Heebo:wght@300;400;500;700;900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Noto+Sans+Hebrew:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rubik:wght@400;500;700;900&family=Varela+Round&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="dark-mode">
-    <!-- Intro Animation Screen -->
+    <!-- Intro / Onboarding Screen -->
     <div id="intro-screen" class="intro-screen active">
         <div class="intro-content">
-            <!-- Loading Spinner -->
-            <div id="intro-loader" class="intro-loader active">
+
+            <!-- STEP 1: Language Selection -->
+            <div id="onboard-lang" class="onboard-step active">
+                <p class="onboard-heading">בחר שפה &nbsp;|&nbsp; Choose Language</p>
+                <div class="onboard-lang-tiles">
+                    <button class="onboard-lang-tile" data-lang="he">
+                        <img class="tile-flag" src="https://www.mrflag.com/wp-content/uploads/2018/11/Israel.png" alt="ישראל">
+                        <span class="tile-code">עברית</span>
+                    </button>
+                    <button class="onboard-lang-tile" data-lang="en">
+                        <img class="tile-flag" src="https://mrflag.com/wp-content/uploads/2018/11/United-States-of-America-USA-1.png" alt="USA">
+                        <span class="tile-code">EN</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 2: Theme Selection -->
+            <div id="onboard-theme" class="onboard-step">
+                <p class="onboard-heading" data-i18n="choose_theme">בחרו ערכת נושא</p>
+                <div class="onboard-theme-tiles">
+                    <div class="onboard-theme-item">
+                        <button class="onboard-theme-tile" data-theme="blue" style="background:linear-gradient(135deg,#00d4ff,#3B82F6)"></button>
+                        <span class="onboard-theme-name" data-i18n="theme_blue">כחול</span>
+                    </div>
+                    <div class="onboard-theme-item">
+                        <button class="onboard-theme-tile" data-theme="purple" style="background:linear-gradient(135deg,#a78bfa,#7C3AED)"></button>
+                        <span class="onboard-theme-name" data-i18n="theme_purple">סגול</span>
+                    </div>
+                    <div class="onboard-theme-item">
+                        <button class="onboard-theme-tile" data-theme="green" style="background:linear-gradient(135deg,#34d399,#059669)"></button>
+                        <span class="onboard-theme-name" data-i18n="theme_green">ירוק</span>
+                    </div>
+                    <div class="onboard-theme-item">
+                        <button class="onboard-theme-tile" data-theme="orange" style="background:linear-gradient(135deg,#fbbf24,#f97316)"></button>
+                        <span class="onboard-theme-name" data-i18n="theme_orange">כתום</span>
+                    </div>
+                    <div class="onboard-theme-item">
+                        <button class="onboard-theme-tile" data-theme="rose" style="background:linear-gradient(135deg,#fb7185,#e11d48)"></button>
+                        <span class="onboard-theme-name" data-i18n="theme_rose">ורוד</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INTRO ANIMATION (plays after onboarding) -->
+            <div id="intro-loader" class="intro-loader">
                 <div class="spinner"></div>
                 <p class="loading-text" data-i18n="loading_text">Loading...</p>
             </div>
-
-            <!-- Hello Text -->
             <div id="intro-hello" class="intro-step">
                 <h1 class="intro-big-text" data-i18n="intro_hello">HELLO!</h1>
             </div>
-
-            <!-- Name Text -->
             <div id="intro-name" class="intro-step">
                 <h2 class="intro-medium-text" data-i18n-html="intro_name">my name is <span class="name-highlight">snir</span></h2>
             </div>
-
-            <!-- Waving Hand -->
             <div id="intro-wave" class="intro-step">
                 <div class="waving-hand">👋</div>
             </div>
+
         </div>
     </div>
 
@@ -61,7 +100,7 @@
                 </div>
                 <ul class="nav-menu">
                     <li class="nav-item">
-                        <a href="#home" class="nav-link active"><span data-i18n="nav_home">Home</span></a>
+                        <a href="#home" class="nav-link"><span data-i18n="nav_home">Home</span></a>
                     </li>
                     <li class="nav-item locked" data-section="about">
                         <a href="#about" class="nav-link">
@@ -98,8 +137,8 @@
                 <div class="nav-controls">
                     <div class="language-switcher">
                         <span class="lang-label" data-i18n="choose_language">Choose Language</span>
-                        <button class="lang-btn active" id="lang-en" title="English">🇺🇸</button>
-                        <button class="lang-btn" id="lang-he" title="עברית">🇮🇱</button>
+                        <button class="lang-btn active" id="lang-en" title="English"><img class="lang-flag" src="https://mrflag.com/wp-content/uploads/2018/11/United-States-of-America-USA-1.png" alt="US flag"><span class="lang-code">EN</span></button>
+                        <button class="lang-btn" id="lang-he" title="עברית"><img class="lang-flag" src="https://www.mrflag.com/wp-content/uploads/2018/11/Israel.png" alt="IL flag"><span class="lang-code">HE</span></button>
                     </div>
                     <button id="dark-mode-toggle" class="dark-mode-toggle-fixed" aria-label="Toggle dark mode">
                         <span class="toggle-icon"></span>
@@ -109,8 +148,9 @@
         </nav>
 
         <!-- WhatsApp Floating Button -->
-        <a href="https://wa.me/972508283860" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/960px-WhatsApp.svg.png" alt="WhatsApp">
+        <div class="whatsapp-tooltip" data-i18n="whatsapp_tooltip">דברו איתי בווצאפ! 💬</div>
+        <a href="https://wa.me/972508283860?text=היי%20שניר%2C%20אשמח%20לשמוע%20פרטים%20נוספים!" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
         </a>
 
         <!-- Hero Section -->
@@ -168,6 +208,7 @@
                         <h2 data-i18n="locked_title">קטע זה נעול</h2>
                         <p data-i18n="locked_hint">נצחו את האתגר כדי לפתוח</p>
                         <button class="challenge-btn" onclick="startChallenge('about')" data-i18n="start_challenge">לחצו כאן כדי לפתוח את האתגר</button>
+                        <button class="skip-btn" onclick="unlockSection('about')" data-i18n="skip_challenge">אין לי זמן, דלג</button>
                     </div>
                     <div class="inline-game-container" id="game-about"></div>
                 </div>
@@ -181,9 +222,8 @@
                         <div class="about-identity">
                             <h2 class="about-name">שניר דואני</h2>
                             <div class="about-tags">
-                                <span class="about-tag">📍 רמת ישי</span>
+                                <span class="about-tag" data-i18n="about_tag_location">📍 רמת ישי</span>
                                 <span class="about-tag">💻 Full Stack Developer</span>
-
                             </div>
                         </div>
                     </div>
@@ -192,52 +232,52 @@
                     <div class="about-stats">
                         <div class="about-stat">
                             <span class="about-stat-num">#1</span>
-                            <span class="about-stat-label">בשירות</span>
+                            <span class="about-stat-label" data-i18n="about_stat_service">בשירות</span>
                         </div>
                         <div class="about-stat">
                             <span class="about-stat-num">24/7</span>
-                            <span class="about-stat-label">זמינות</span>
+                            <span class="about-stat-label" data-i18n="about_stat_avail">זמינות</span>
                         </div>
                         <div class="about-stat">
                             <span class="about-stat-num">∞</span>
-                            <span class="about-stat-label">תשוקה</span>
+                            <span class="about-stat-label" data-i18n="about_stat_passion">תשוקה</span>
                         </div>
                     </div>
 
                     <!-- Bio -->
                     <div class="about-bio">
-                        <p>עם רקע טכנולוגי עשיר שמתחיל הרבה לפני הלימודים הפורמליים, אני משלב <strong>הבנה טכנית עמוקה</strong> עם <strong>ראייה עסקית רחבה</strong>.<br>הגישה שלי לפיתוח מתחילה קודם כל בהקשבה לצרכים שלכם, כדי לבנות פתרונות תוכנה <strong>אינטואיטיביים, חזקים ומותאמים אישית</strong>.</p>
+                        <p data-i18n-html="about_bio">עם רקע טכנולוגי עשיר שמתחיל הרבה לפני הלימודים הפורמליים, אני משלב <strong>הבנה טכנית עמוקה</strong> עם <strong>ראייה עסקית רחבה</strong>.<br>הגישה שלי לפיתוח מתחילה קודם כל בהקשבה לצרכים שלכם, כדי לבנות פתרונות תוכנה <strong>אינטואיטיביים, חזקים ומותאמים אישית</strong>.</p>
                     </div>
 
                     <!-- Services -->
-                    <p class="about-services-label">השירותים שאני מציע</p>
+                    <p class="about-services-label" data-i18n="about_services_label">השירותים שאני מציע</p>
                     <div class="about-services">
                         <div class="about-service-card">
                             <span class="about-service-icon">⚙️</span>
                             <div>
                                 <h4>Full Stack</h4>
-                                <p>בניית פתרונות דיגיטליים מקצה לקצה — Front-end ו-Back-end</p>
+                                <p data-i18n="about_svc1_desc">בניית פתרונות דיגיטליים מקצה לקצה — Front-end ו-Back-end</p>
                             </div>
                         </div>
                         <div class="about-service-card">
                             <span class="about-service-icon">📊</span>
                             <div>
-                                <h4>מערכות ניהול חכמות</h4>
-                                <p>דשבורדים ומערכות דיווח שעות בהתאמה אישית לצרכי העסק</p>
+                                <h4 data-i18n="about_svc2_title">מערכות ניהול חכמות</h4>
+                                <p data-i18n="about_svc2_desc">דשבורדים ומערכות דיווח שעות בהתאמה אישית לצרכי העסק</p>
                             </div>
                         </div>
                         <div class="about-service-card">
                             <span class="about-service-icon">⚡</span>
                             <div>
-                                <h4>אוטומציה והתייעלות</h4>
-                                <p>הפיכת תהליכים ידניים לאוטומטיים לשיפור הפרודוקטיביות</p>
+                                <h4 data-i18n="about_svc3_title">אוטומציה והתייעלות</h4>
+                                <p data-i18n="about_svc3_desc">הפיכת תהליכים ידניים לאוטומטיים לשיפור הפרודוקטיביות</p>
                             </div>
                         </div>
                         <div class="about-service-card">
                             <span class="about-service-icon">🎯</span>
                             <div>
-                                <h4>דפי נחיתה ואתרים</h4>
-                                <p>עיצוב ופיתוח ממוקד המרה ותוצאות</p>
+                                <h4 data-i18n="about_svc4_title">דפי נחיתה ואתרים</h4>
+                                <p data-i18n="about_svc4_desc">עיצוב ופיתוח ממוקד המרה ותוצאות</p>
                             </div>
                         </div>
                     </div>
@@ -245,14 +285,14 @@
                     <!-- Featured card -->
                     <div class="about-featured-card">
                         <span class="about-featured-star">✦</span>
-                        <span>פרויקטים <strong>מותאמים אישית</strong> לצרכים שלכם!</span>
+                        <span data-i18n-html="about_featured">פרויקטים <strong>מותאמים אישית</strong> לצרכים שלכם!</span>
                         <span class="about-featured-star">✦</span>
                     </div>
 
                     <!-- Availability -->
                     <div class="about-availability">
                         <span class="about-avail-dot"></span>
-                        <span>זמין לפרויקטים כ<strong>פרילאנסר</strong> — ופתוח גם להצעות למשרות מעניינות</span>
+                        <span data-i18n-html="about_avail">זמין לפרויקטים כ<strong>פרילאנסר</strong> — ופתוח גם להצעות למשרות מעניינות</span>
                     </div>
 
                 </div>
@@ -268,12 +308,13 @@
                         <h2 data-i18n="locked_title">קטע זה נעול</h2>
                         <p data-i18n="locked_hint">נצחו את האתגר כדי לפתוח</p>
                         <button class="challenge-btn" onclick="startChallenge('projects')" data-i18n="start_challenge">לחצו כאן כדי לפתוח את האתגר</button>
+                        <button class="skip-btn" onclick="unlockSection('projects')" data-i18n="skip_challenge">אין לי זמן, דלג</button>
                     </div>
                     <div class="inline-game-container" id="game-projects"></div>
                 </div>
                 <div class="section-content">
                     <h2 data-i18n="projects_title">תיק עבודות</h2>
-                    <p class="projects-subtitle">הקליקו על פרויקט לפרטים נוספים</p>
+                    <p class="projects-subtitle" data-i18n="projects_subtitle">הקליקו על פרויקט לפרטים נוספים</p>
                     <div class="projects-grid" id="projects-grid"></div>
                 </div>
             </div>
@@ -288,12 +329,86 @@
                         <h2 data-i18n="locked_title">קטע זה נעול</h2>
                         <p data-i18n="locked_hint">נצחו את האתגר כדי לפתוח</p>
                         <button class="challenge-btn" onclick="startChallenge('portfolio')" data-i18n="start_challenge">לחצו כאן כדי לפתוח את האתגר</button>
+                        <button class="skip-btn" onclick="unlockSection('portfolio')" data-i18n="skip_challenge">אין לי זמן, דלג</button>
                     </div>
                     <div class="inline-game-container" id="game-portfolio"></div>
                 </div>
                 <div class="section-content">
                     <h2 data-i18n="portfolio_title">קורות חיים</h2>
                     <p data-i18n="portfolio_desc">קורות החיים והניסיון המקצועי שלי</p>
+
+                    <!-- Timeline -->
+                    <div class="cv-timeline">
+
+                        <div class="cv-milestone" tabindex="0">
+                            <div class="cv-milestone-dot"></div>
+                            <div class="cv-milestone-year">2011</div>
+                            <div class="cv-milestone-popup">
+                                <div class="cv-popup-company">BUG Multisystem</div>
+                                <div class="cv-popup-role" data-i18n="ms_2011_role">תמיכה טכנית ומומחה חומרה</div>
+                                <div class="cv-popup-desc" data-i18n="ms_2011_desc">אבחון ותיקון חומרה ותוכנה, התקנות מערכות הפעלה ורשתות.</div>
+                            </div>
+                        </div>
+
+                        <div class="cv-milestone" tabindex="0">
+                            <div class="cv-milestone-dot"></div>
+                            <div class="cv-milestone-year">2012</div>
+                            <div class="cv-milestone-popup">
+                                <div class="cv-popup-company">Technoda</div>
+                                <div class="cv-popup-role" data-i18n="ms_2012_role">מפתח Frontend ומדריך</div>
+                                <div class="cv-popup-desc" data-i18n="ms_2012_desc">פיתוח אפליקציות Web חוויתיות, הדרכת תלמידים מחוננים בתכנות.</div>
+                            </div>
+                        </div>
+
+                        <div class="cv-milestone" tabindex="0">
+                            <div class="cv-milestone-dot"></div>
+                            <div class="cv-milestone-year">2016</div>
+                            <div class="cv-milestone-popup">
+                                <div class="cv-popup-company" data-i18n="ms_2016_company">מת"ל — לימודים</div>
+                                <div class="cv-popup-role" data-i18n="ms_2016_role">הנדסאי תוכנה מוסמך</div>
+                                <div class="cv-popup-desc" data-i18n="ms_2016_desc">תואר הנדסאי תוכנה — Java, C#, מבני נתונים, אלגוריתמים.</div>
+                            </div>
+                        </div>
+
+                        <div class="cv-milestone" tabindex="0">
+                            <div class="cv-milestone-dot"></div>
+                            <div class="cv-milestone-year">2018</div>
+                            <div class="cv-milestone-popup">
+                                <div class="cv-popup-company" data-i18n="ms_2018_company">סיום לימודים + Full Stack</div>
+                                <div class="cv-popup-role" data-i18n="ms_2018_role">קורסי Full Stack מתקדמים</div>
+                                <div class="cv-popup-desc" data-i18n="ms_2018_desc">Node.js, React, Firebase, Cloud Technologies — פרויקטים ראשונים בפרודקשן.</div>
+                            </div>
+                        </div>
+
+                        <div class="cv-milestone" tabindex="0">
+                            <div class="cv-milestone-dot"></div>
+                            <div class="cv-milestone-year">2021</div>
+                            <div class="cv-milestone-popup">
+                                <div class="cv-popup-company" data-i18n="ms_2021_company">פרויקטים עסקיים</div>
+                                <div class="cv-popup-role" data-i18n="ms_2021_role">מפתח Full Stack עצמאי</div>
+                                <div class="cv-popup-desc" data-i18n="ms_2021_desc">מערכות ניהול שעות, דפי נחיתה, מערכות CRM ומסחר.</div>
+                            </div>
+                        </div>
+
+                        <div class="cv-milestone active" tabindex="0">
+                            <div class="cv-milestone-dot"></div>
+                            <div class="cv-milestone-year">2024</div>
+                            <div class="cv-milestone-popup">
+                                <div class="cv-popup-company" data-i18n="ms_2024_company">AI Agents & Claude Code</div>
+                                <div class="cv-popup-role" data-i18n="ms_2024_role">מומחה סוכני AI</div>
+                                <div class="cv-popup-desc" data-i18n="ms_2024_desc">בניית וטמיעת סוכני AI אוטונומיים עם Claude Code ו-MCP Servers במערכות עסקיות.</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- CV Open Button -->
+                    <div class="cv-btn-wrap">
+                        <button class="cv-open-btn" id="cv-open-btn">
+                            <span>📄</span>
+                            <span data-i18n="cv_view_btn">צפה בקורות החיים</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -307,36 +422,73 @@
                         <h2 data-i18n="locked_title">קטע זה נעול</h2>
                         <p data-i18n="locked_hint">נצחו את האתגר כדי לפתוח</p>
                         <button class="challenge-btn" onclick="startChallenge('blog')" data-i18n="start_challenge">לחצו כאן כדי לפתוח את האתגר</button>
+                        <button class="skip-btn" onclick="unlockSection('blog')" data-i18n="skip_challenge">אין לי זמן, דלג</button>
                     </div>
                     <div class="inline-game-container" id="game-blog"></div>
                 </div>
                 <div class="section-content">
                     <h2 data-i18n="blog_title">המלצות</h2>
                     <p data-i18n="blog_desc">מה אנשים אומרים עליי</p>
-                    <div class="testimonials-grid">
-                        <div class="testimonial-card">
-                            <div class="testimonial-quote">❝</div>
-                            <p class="testimonial-text">שניר הוא מפתח יוצא דופן עם יכולת גבוהה לפתור בעיות מורכבות. הוא עובד מהר, מדויק ותמיד מוסיף ערך לכל צוות שבו הוא משתתף.</p>
-                            <div class="testimonial-author">
-                                <strong>ישראל ישראלי</strong>
-                                <span>מנהל פרויקטים, חברת הייטק</span>
+                    <!-- WhatsApp Chat Style Testimonials -->
+                    <div class="wa-chat-container">
+                        <div class="wa-chat-header">
+                            <div class="wa-chat-header-avatar">ש</div>
+                            <div class="wa-chat-header-info">
+                                <span class="wa-chat-header-name" data-i18n="wa_chat_name">שניר דואני</span>
+                                <span class="wa-chat-header-status"><i class="fas fa-circle"></i> <span data-i18n="wa_chat_status">מקוון</span></span>
                             </div>
+                            <i class="fab fa-whatsapp wa-chat-header-icon"></i>
                         </div>
-                        <div class="testimonial-card">
-                            <div class="testimonial-quote">❝</div>
-                            <p class="testimonial-text">עבדתי עם שניר על מספר פרויקטים ותמיד הופתעתי מיכולתו לחשוב מחוץ לקופסה. הקוד שלו נקי, מסודר ותמיד תוך עמידה בלוח זמנים.</p>
-                            <div class="testimonial-author">
-                                <strong>רחל כהן</strong>
-                                <span>מנהלת מוצר, סטארטאפ</span>
+                        <div class="wa-chat-messages">
+
+                            <!-- Message 1 - ניר -->
+                            <div class="wa-message">
+                                <div class="wa-message-avatar" style="background:linear-gradient(135deg,#e63946,#ff6b6b)">נ</div>
+                                <div class="wa-message-bubble">
+                                    <div class="wa-message-sender" data-i18n="wa_sender_1">ניר | מדריך כושר קרבי</div>
+                                    <div class="wa-message-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    </div>
+                                    <p class="wa-message-text" data-i18n="wa_text_1">שניר בנה לי את כל המערכת לניהול המתאמנים תוך שבוע. מהיר, מקצועי ויודע בדיוק מה צריך. ממליץ בחום!</p>
+                                    <div class="wa-message-footer">
+                                        <span class="wa-message-time">10:14</span>
+                                        <span class="wa-message-ticks"><i class="fas fa-check-double"></i></span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="testimonial-quote">❝</div>
-                            <p class="testimonial-text">שניר הוא אחד האנשים הכי מוכשרים שעבדתי איתם. הוא לומד מהר, מתאים את עצמו לכל טכנולוגיה ותמיד מוכן לעזור לשאר הצוות.</p>
-                            <div class="testimonial-author">
-                                <strong>דוד לוי</strong>
-                                <span>Lead Developer, חברת פינטק</span>
+
+                            <!-- Message 2 - אורן -->
+                            <div class="wa-message">
+                                <div class="wa-message-avatar" style="background:linear-gradient(135deg,#7C3AED,#a855f7)">א</div>
+                                <div class="wa-message-bubble">
+                                    <div class="wa-message-sender" data-i18n="wa_sender_2">אורן | מנהל פיננסים</div>
+                                    <div class="wa-message-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    </div>
+                                    <p class="wa-message-text" data-i18n="wa_text_2">פיתח עבורי מערכת דיווחי שעות מלאה שחסכה לי שעות עבודה כל שבוע. הקוד נקי, הממשק אינטואיטיבי והתמיכה מעולה 🙌</p>
+                                    <div class="wa-message-footer">
+                                        <span class="wa-message-time">11:47</span>
+                                        <span class="wa-message-ticks"><i class="fas fa-check-double"></i></span>
+                                    </div>
+                                </div>
                             </div>
+
+                            <!-- Message 3 - אורית -->
+                            <div class="wa-message">
+                                <div class="wa-message-avatar" style="background:linear-gradient(135deg,#059669,#34d399)">א</div>
+                                <div class="wa-message-bubble">
+                                    <div class="wa-message-sender" data-i18n="wa_sender_3">אורית | מנהלת פרויקטים</div>
+                                    <div class="wa-message-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    </div>
+                                    <p class="wa-message-text" data-i18n="wa_text_3">עבדתי עם שניר על דף נחיתה לאירוע שלנו — התוצאה הייתה מעל הציפיות. עיצוב מרהיב, עמידה בלוחות זמנים ויחס אישי אמיתי 💯</p>
+                                    <div class="wa-message-footer">
+<span class="wa-message-time">14:22</span>
+                                        <span class="wa-message-ticks"><i class="fas fa-check-double"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -352,12 +504,106 @@
                         <h2 data-i18n="locked_title">קטע זה נעול</h2>
                         <p data-i18n="locked_hint">נצחו את האתגר כדי לפתוח</p>
                         <button class="challenge-btn" onclick="startChallenge('contact')" data-i18n="start_challenge">לחצו כאן כדי לפתוח את האתגר</button>
+                        <button class="skip-btn" onclick="unlockSection('contact')" data-i18n="skip_challenge">אין לי זמן, דלג</button>
                     </div>
                     <div class="inline-game-container" id="game-contact"></div>
                 </div>
                 <div class="section-content">
-                    <h2 data-i18n="contact_title">Contact</h2>
-                    <p data-i18n="contact_desc">Get in touch with me...</p>
+
+                    <div class="contact-grid">
+
+                        <!-- Info side -->
+                        <div class="contact-info">
+                            <h2 data-i18n="contact_title" class="contact-section-title">צור קשר</h2>
+                            <p data-i18n="contact_desc" class="contact-section-desc">אשמח לשמוע מכם בכל נושא, שיחת זום ראשונה ללא עלות</p>
+                            <div class="contact-details">
+                                <a href="tel:0508283860" class="contact-detail">
+                                    <div class="contact-detail-icon"><i class="fas fa-phone-alt"></i></div>
+                                    <div class="contact-detail-text">
+                                        <strong data-i18n="contact_phone_label">טלפון</strong>
+                                        <span>050-828-3860</span>
+                                    </div>
+                                </a>
+                                <a href="https://wa.me/972508283860?text=היי%20שניר%2C%20אשמח%20לשמוע%20פרטים" target="_blank" rel="noopener" class="contact-detail">
+                                    <div class="contact-detail-icon wa"><i class="fab fa-whatsapp"></i></div>
+                                    <div class="contact-detail-text">
+                                        <strong>WhatsApp</strong>
+                                        <span data-i18n="contact_wa_text">שלח הודעה עכשיו</span>
+                                    </div>
+                                </a>
+                                <a href="mailto:snir@snirdoani.com" class="contact-detail">
+                                    <div class="contact-detail-icon"><i class="fas fa-envelope"></i></div>
+                                    <div class="contact-detail-text">
+                                        <strong data-i18n="contact_email_label">אימייל</strong>
+                                        <span>snir@snirdoani.com</span>
+                                    </div>
+                                </a>
+                                <a href="https://github.com/snirsnir" target="_blank" rel="noopener" class="contact-detail">
+                                    <div class="contact-detail-icon"><i class="fab fa-github"></i></div>
+                                    <div class="contact-detail-text">
+                                        <strong>GitHub</strong>
+                                        <span>github.com/snirsnir</span>
+                                    </div>
+                                </a>
+                                <a href="https://linkedin.com/in/snir-doani" target="_blank" rel="noopener" class="contact-detail">
+                                    <div class="contact-detail-icon"><i class="fab fa-linkedin-in"></i></div>
+                                    <div class="contact-detail-text">
+                                        <strong>LinkedIn</strong>
+                                        <span>linkedin.com/in/snir-doani</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Form side -->
+                        <div class="contact-form-wrap">
+                            <form id="contact-form"
+                                action="https://docs.google.com/forms/d/e/1FAIpQLSeQ1yliGJ03kcsSdXiXO4c276abW2gN8A2RRa-F0RZMuyptTA/formResponse"
+                                method="POST"
+                                target="contact-iframe">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label data-i18n="form_name">שם מלא</label>
+                                        <input type="text" name="entry.864914662" data-i18n-placeholder="placeholder_name" placeholder="השם שלך" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label data-i18n="form_phone">טלפון</label>
+                                        <input type="tel" name="entry.1073717968" data-i18n-placeholder="placeholder_phone" placeholder="050-XXX-XXXX">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="form_email_label">אימייל</label>
+                                    <input type="email" name="entry.29008555" data-i18n-placeholder="placeholder_email" placeholder="האימייל שלך" required>
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="form_service_label">במה אוכל לעזור?</label>
+                                    <select name="entry.315047308">
+                                        <option value="" data-i18n="form_svc_default">בחר נושא</option>
+                                        <option value="website" data-i18n="form_svc_website">אתר / דף נחיתה</option>
+                                        <option value="ai" data-i18n="form_svc_ai">סוכן AI / אוטומציה</option>
+                                        <option value="system" data-i18n="form_svc_system">מערכת ניהול</option>
+                                        <option value="fullstack" data-i18n="form_svc_fullstack">פיתוח Full Stack</option>
+                                        <option value="other" data-i18n="form_svc_other">אחר</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="form_message">הודעה</label>
+                                    <textarea name="entry.1386348" rows="4" data-i18n-placeholder="placeholder_message" placeholder="ספר לי על הפרויקט שלך..."></textarea>
+                                </div>
+                                <button type="submit" class="contact-submit-btn">
+                                    <span data-i18n="form_submit">שלח פנייה</span>
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </form>
+                            <div id="form-success" class="form-success" style="display:none">
+                                <div class="form-success-icon"><i class="fas fa-check-circle"></i></div>
+                                <p class="form-success-title" data-i18n="form_success_title">ההודעה נשלחה בהצלחה!</p>
+                                <p class="form-success-desc" data-i18n="form_success_desc">אחזור אליך בהקדם 🙏</p>
+                            </div>
+                            <iframe name="contact-iframe" id="contact-iframe" style="display:none" aria-hidden="true"></iframe>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </section>
@@ -392,10 +638,66 @@
                 <h3 class="proj-modal-title" id="proj-modal-title"></h3>
                 <p class="proj-modal-desc" id="proj-modal-desc"></p>
                 <div class="proj-modal-tech" id="proj-modal-tech"></div>
+                <div class="proj-modal-note" id="proj-modal-note"></div>
+                <div class="proj-modal-iframe-wrap" id="proj-modal-iframe-wrap">
+                    <div class="proj-iframe-toolbar">
+                        <span class="proj-iframe-label">תצוגה מקדימה חיה</span>
+                        <a href="#" target="_blank" rel="noopener" class="proj-iframe-open-btn" id="proj-iframe-open-btn">🔗 לחצו לצפייה</a>
+                    </div>
+                    <iframe id="proj-modal-iframe" src="" frameborder="0" allowfullscreen loading="lazy" title="תצוגה מקדימה"></iframe>
+                </div>
                 <a href="#" target="_blank" rel="noopener" class="proj-modal-link" id="proj-modal-link">⬇ הורד את המשחק</a>
             </div>
         </div>
     </div>
+
+    <!-- CV Modal -->
+    <div class="cv-modal-overlay" id="cv-modal-overlay">
+        <div class="cv-modal" role="dialog" aria-modal="true">
+            <div class="cv-modal-header">
+                <div class="cv-modal-header-left">
+                    <span class="cv-modal-icon">📄</span>
+                    <span class="cv-modal-title" data-i18n="cv_modal_title">קורות החיים שלי</span>
+                </div>
+                <div class="cv-modal-header-right">
+                    <button class="cv-modal-download" id="cv-modal-download" title="הורד PDF">
+                        <span>⬇</span>
+                        <span data-i18n="cv_download">הורד PDF</span>
+                    </button>
+                    <button class="cv-modal-close-btn" id="cv-modal-close-btn" aria-label="סגור">✕</button>
+                </div>
+            </div>
+            <div class="cv-modal-body">
+                <iframe id="cv-modal-iframe" src="" title="קורות חיים" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <span class="footer-name" data-i18n="footer_name">שניר דואני</span>
+                    <span class="footer-tagline" data-i18n="footer_tagline">Full Stack Developer · AI Agent Specialist</span>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/snirsnir" target="_blank" rel="noopener" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/snir-doani" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://wa.me/972508283860" target="_blank" rel="noopener" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                Designed &amp; Developed with ♥ by <strong>Snir Doani</strong> &nbsp;·&nbsp; © 2025
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
