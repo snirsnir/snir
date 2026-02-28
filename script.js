@@ -1030,9 +1030,10 @@ function initOnboarding() {
     // Language tile clicked
     document.querySelectorAll('.onboard-lang-tile').forEach(btn => {
         btn.addEventListener('click', () => {
-            setLanguage(btn.dataset.lang);
+            const lang = btn.dataset.lang;
             onboardLang.classList.add('onboard-exit');
             setTimeout(() => {
+                setLanguage(lang);
                 onboardLang.style.display = 'none';
                 onboardTheme.classList.add('active');
             }, 350);
