@@ -3435,7 +3435,7 @@ body.dark-mode .lang-btn.active {
 
 /* Mobile nav overlay backdrop */
 .mobile-nav-overlay {
-    display: none;
+    display: block;
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.55);
@@ -3444,10 +3444,12 @@ body.dark-mode .lang-btn.active {
     -webkit-backdrop-filter: blur(3px);
     opacity: 0;
     transition: opacity 0.35s ease;
+    pointer-events: none;
 }
 
 .mobile-nav-overlay.active {
     opacity: 1;
+    pointer-events: all;
 }
 
 body.menu-open {
@@ -3646,9 +3648,7 @@ body.menu-open {
         right: 0;
     }
 
-    .mobile-nav-overlay {
-        display: block;
-    }
+    /* mobile-nav-overlay visibility handled by pointer-events in base rule */
 
     .nav-link {
         padding: 13px 16px;
