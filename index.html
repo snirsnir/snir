@@ -143,8 +143,14 @@
                     <button id="dark-mode-toggle" class="dark-mode-toggle-fixed" aria-label="Toggle dark mode">
                         <span class="toggle-icon"></span>
                     </button>
+                    <button class="hamburger-btn" id="hamburger-btn" aria-label="תפריט">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
             </div>
+            <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
         </nav>
 
         <!-- WhatsApp Floating Button -->
@@ -642,13 +648,22 @@
                 <div class="proj-modal-iframe-wrap" id="proj-modal-iframe-wrap">
                     <div class="proj-iframe-toolbar">
                         <span class="proj-iframe-label">תצוגה מקדימה חיה</span>
-                        <a href="#" target="_blank" rel="noopener" class="proj-iframe-open-btn" id="proj-iframe-open-btn">🔗 לחצו לצפייה</a>
+                        <div class="proj-iframe-actions">
+                            <button class="proj-iframe-expand-btn" id="proj-iframe-expand-btn" data-i18n="iframe_expand">⛶ הצג בגדול</button>
+                            <a href="#" target="_blank" rel="noopener" class="proj-iframe-open-btn" id="proj-iframe-open-btn">🔗 לחצו לצפייה</a>
+                        </div>
                     </div>
                     <iframe id="proj-modal-iframe" src="" frameborder="0" allowfullscreen loading="lazy" title="תצוגה מקדימה"></iframe>
                 </div>
                 <a href="#" target="_blank" rel="noopener" class="proj-modal-link" id="proj-modal-link">⬇ הורד את המשחק</a>
             </div>
         </div>
+    </div>
+
+    <!-- Iframe Fullscreen Overlay -->
+    <div class="proj-fullscreen-overlay" id="proj-fullscreen-overlay">
+        <button class="proj-fullscreen-close" id="proj-fullscreen-close" aria-label="סגור">✕</button>
+        <iframe id="proj-fullscreen-iframe" src="" frameborder="0" allowfullscreen title="תצוגה מקדימה מלאה"></iframe>
     </div>
 
     <!-- CV Modal -->

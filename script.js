@@ -68,6 +68,7 @@ const translations = {
         form_svc_other: 'Other',
         form_message: 'Message',
         form_submit: 'Send Message',
+        iframe_expand: '⛶ Expand',
         form_success_title: 'Message sent successfully!',
         form_success_desc: "I'll get back to you soon 🙏",
         placeholder_name: 'Your name',
@@ -265,6 +266,7 @@ const translations = {
         form_svc_other: 'אחר',
         form_message: 'הודעה',
         form_submit: 'שלח פנייה',
+        iframe_expand: '⛶ הצג בגדול',
         form_success_title: 'ההודעה נשלחה בהצלחה!',
         form_success_desc: 'אחזור אליך בהקדם 🙏',
         placeholder_name: 'השם שלך',
@@ -637,6 +639,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadUnlockedSections();
     initLanguage();
     initNavbarScroll();
+    initHamburgerMenu();
     renderProjectsGrid();
     initProjectModal();
     initCVTimeline();
@@ -833,14 +836,11 @@ function initProjectModal() {
             noteEl.style.display = 'none';
         }
         const iframeWrap = document.getElementById('proj-modal-iframe-wrap');
-        const iframeEl = document.getElementById('proj-modal-iframe');
         const iframeOpenBtn = document.getElementById('proj-iframe-open-btn');
         if (p.iframe) {
-            iframeEl.src = p.iframe;
             iframeOpenBtn.href = p.iframe;
             iframeWrap.style.display = 'block';
         } else {
-            iframeEl.src = '';
             iframeWrap.style.display = 'none';
         }
         updateGalleryImage();
@@ -851,7 +851,6 @@ function initProjectModal() {
     function closeModal() {
         overlay.classList.remove('open');
         document.body.style.overflow = '';
-        document.getElementById('proj-modal-iframe').src = '';
     }
 
     document.getElementById('proj-gallery-prev')?.addEventListener('click', () => {
@@ -878,7 +877,31 @@ function initProjectModal() {
     });
     closeBtn.addEventListener('click', closeModal);
     overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeFullscreen(); } });
+
+    // Fullscreen iframe overlay
+    const fsOverlay  = document.getElementById('proj-fullscreen-overlay');
+    const fsIframe   = document.getElementById('proj-fullscreen-iframe');
+    const fsClose    = document.getElementById('proj-fullscreen-close');
+    const expandBtn  = document.getElementById('proj-iframe-expand-btn');
+
+    function openFullscreen() {
+        if (!currentProject?.iframe) return;
+        fsIframe.src = currentProject.iframe;
+        fsOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeFullscreen() {
+        if (!fsOverlay.classList.contains('open')) return;
+        fsOverlay.classList.remove('open');
+        setTimeout(() => { fsIframe.src = ''; }, 300);
+        document.body.style.overflow = '';
+    }
+
+    expandBtn?.addEventListener('click', openFullscreen);
+    fsClose?.addEventListener('click', closeFullscreen);
+    fsOverlay?.addEventListener('click', e => { if (e.target === fsOverlay) closeFullscreen(); });
 }
 
 // =====================
@@ -928,6 +951,43 @@ function initDarkMode() {
         } else {
             localStorage.setItem('darkMode', 'disabled');
         }
+    });
+}
+
+// =====================
+// Hamburger Menu (Mobile)
+// =====================
+function initHamburgerMenu() {
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navMenu      = document.querySelector('.nav-menu');
+    const overlay      = document.getElementById('mobile-nav-overlay');
+
+    if (!hamburgerBtn) return;
+
+    function closeMenu() {
+        hamburgerBtn.classList.remove('active');
+        navMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.classList.remove('menu-open');
+    }
+
+    hamburgerBtn.addEventListener('click', () => {
+        const isOpen = navMenu.classList.contains('active');
+        if (isOpen) {
+            closeMenu();
+        } else {
+            hamburgerBtn.classList.add('active');
+            navMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.classList.add('menu-open');
+        }
+    });
+
+    overlay.addEventListener('click', closeMenu);
+
+    // Close menu when a nav link is clicked (so the page scrolls to section)
+    navMenu.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', closeMenu);
     });
 }
 
@@ -1118,6 +1178,20 @@ function startChallenge(section) {
         gameContainer.style.display = 'block';
         const gameType = gameState.games[section];
         loadGame(gameType, gameContainer);
+
+        // In-game skip button
+        const skipBtn = document.createElement('button');
+        skipBtn.className = 'skip-btn in-game-skip';
+        skipBtn.setAttribute('data-i18n', 'skip_challenge');
+        skipBtn.textContent = t('skip_challenge');
+        skipBtn.addEventListener('click', () => {
+            unlockSection(section);
+            gameState.currentSection = null;
+            setTimeout(() => {
+                document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        });
+        gameContainer.appendChild(skipBtn);
     }
 }
 

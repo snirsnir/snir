@@ -1124,6 +1124,12 @@ body.dark-mode .unlock-message {
     color: var(--text-secondary);
 }
 
+.in-game-skip {
+    display: block;
+    margin: 18px auto 0;
+    font-size: 0.85rem;
+}
+
 .lock-message::before {
     content: '';
     position: absolute;
@@ -2558,11 +2564,84 @@ body.dark-mode .game-modal-content {
     opacity: 0.85;
     scale: 1.04;
 }
-.proj-modal-iframe-wrap iframe {
-    width: 100%;
+
+.proj-iframe-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.proj-iframe-expand-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, scale 0.15s;
+}
+
+.proj-iframe-expand-btn:hover {
+    background: var(--primary);
+    color: #fff;
+    scale: 1.04;
+}
+
+/* ===== Fullscreen iframe overlay ===== */
+.proj-fullscreen-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(6px);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+}
+
+.proj-fullscreen-overlay.open {
+    display: flex;
+}
+
+.proj-fullscreen-overlay iframe {
+    width: 90vw;
     height: 90vh;
-    display: block;
     border: none;
+    border-radius: 14px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8);
+    display: block;
+}
+
+.proj-fullscreen-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 1;
+}
+
+.proj-fullscreen-close:hover {
+    background: rgba(239, 68, 68, 0.5);
+}
+
+.proj-modal-iframe-wrap iframe {
+    display: none;
 }
 
 /* ============================
@@ -2858,6 +2937,26 @@ body.dark-mode .game-modal-content {
     height: 100%;
     border: none;
     display: block;
+}
+
+@media (max-width: 768px) {
+    .cv-modal-overlay {
+        align-items: stretch;
+        padding: 0;
+    }
+
+    .cv-modal {
+        width: 100vw;
+        max-width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    .cv-modal-header {
+        padding: 10px 14px;
+    }
+
+    .cv-modal-download span:first-child { display: none; }
 }
 
 /* ============================
@@ -3302,6 +3401,59 @@ body.dark-mode .lang-btn.active {
     border-color: var(--primary);
 }
 
+/* ===== HAMBURGER MENU ===== */
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 1.5px solid var(--border-subtle);
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 7px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.hamburger-btn span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.hamburger-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger-btn.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile nav overlay backdrop */
+.mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 9989;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.mobile-nav-overlay.active {
+    opacity: 1;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
 /* ===== WHATSAPP FLOAT ===== */
 .whatsapp-float {
     position: fixed;
@@ -3332,7 +3484,7 @@ body.dark-mode .lang-btn.active {
 .whatsapp-tooltip {
     position: fixed;
     bottom: 104px;
-    right: 18px;
+    right: 30px;
     background: #fff;
     color: #333;
     padding: 10px 18px;
@@ -3351,7 +3503,7 @@ body.dark-mode .lang-btn.active {
     content: '';
     position: absolute;
     bottom: -8px;
-    right: 22px;
+    right: 23px;
     width: 0;
     height: 0;
     border-left: 8px solid transparent;
@@ -3463,24 +3615,46 @@ body.dark-mode .lang-btn.active {
         gap: 15px;
     }
 
+    .hamburger-btn {
+        display: flex;
+    }
+
     .nav-menu {
         flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
+        position: fixed;
+        top: 0;
+        right: -320px;
+        left: auto;
+        width: min(280px, 85vw);
+        height: 100vh;
         background: var(--bg-card);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        padding: 16px 20px;
-        box-shadow: var(--shadow-lg);
-        display: none;
-        border-top: 1px solid var(--border-subtle);
-        gap: 4px;
+        padding: 80px 20px 32px;
+        box-shadow: -8px 0 40px rgba(0, 0, 0, 0.4);
+        display: flex;
+        border-top: none;
+        border-left: 1px solid var(--border-subtle);
+        gap: 6px;
+        z-index: 9990;
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto;
+        align-items: stretch;
     }
 
     .nav-menu.active {
-        display: flex;
+        right: 0;
+    }
+
+    .mobile-nav-overlay {
+        display: block;
+    }
+
+    .nav-link {
+        padding: 13px 16px;
+        font-size: 1rem;
+        border-radius: 12px;
+        justify-content: flex-start;
     }
 
     .language-switcher .lang-label {
@@ -3489,6 +3663,10 @@ body.dark-mode .lang-btn.active {
 }
 
 @media (max-width: 768px) {
+    .whatsapp-tooltip {
+        display: none;
+    }
+
     .hero-title {
         font-size: 2.5rem;
     }

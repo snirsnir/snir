@@ -553,5 +553,31 @@
     </aside>
 
 </div>
+<script>
+(function () {
+    function scaleCV() {
+        var page = document.querySelector('.page');
+        if (!page) return;
+        var vw = window.innerWidth;
+        if (vw >= 900) {
+            page.style.zoom = '';
+            page.style.marginTop = '';
+            document.body.style.background = '';
+            return;
+        }
+        page.style.zoom = '';
+        var naturalW = page.offsetWidth || 794;
+        var scale = Math.min(1, vw / naturalW);
+        page.style.zoom = scale;
+        page.style.marginTop = '0';
+        page.style.marginBottom = '0';
+        document.body.style.background = '#fff';
+        document.body.style.margin = '0';
+        document.body.style.padding = '0';
+    }
+    document.addEventListener('DOMContentLoaded', scaleCV);
+    window.addEventListener('resize', scaleCV);
+})();
+</script>
 </body>
 </html>
