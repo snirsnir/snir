@@ -1705,6 +1705,7 @@ function loadDagMaluach(container) {
         gameActive  = false;
         clearTimeout(phaseTimeout);
         cancelAnimationFrame(rafId);
+        ac.abort();
         playerEl.textContent = '💀';
         playerEl.classList.add('dag-eliminated');
         lightEl.className    = 'dag-light red';
@@ -1724,6 +1725,7 @@ function loadDagMaluach(container) {
         gameActive  = false;
         clearTimeout(phaseTimeout);
         cancelAnimationFrame(rafId);
+        ac.abort();
         playerEl.textContent = '🎊';
         lightEl.className    = 'dag-light green';
         statusEl.textContent = t('dag_win');
